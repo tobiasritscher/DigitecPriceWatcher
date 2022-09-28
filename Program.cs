@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RazorPagesWatchItemContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesWatchItemContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesWatchItemContext' not found.")));
 
 var app = builder.Build();
 
