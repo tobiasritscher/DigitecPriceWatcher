@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using RazorPagesWatchItem.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -8,6 +11,13 @@ builder.Services.AddDbContext<RazorPagesWatchItemContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesWatchItemContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesWatchItemContext' not found.")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

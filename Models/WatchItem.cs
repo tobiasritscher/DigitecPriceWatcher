@@ -9,8 +9,15 @@ namespace RazorPagesWatchItem.Models
         public Availability isAvailable { get; set; }
         public string Category { get; set; } = string.Empty;
         public decimal Price { get; set; }
-        public string ItemUrl { get; set; }
+        public string ItemUrl { get; set; } = string.Empty;
+
+        public override string ToString()
+        {
+            return $"Name: {Name}, Availability: {isAvailable}, Image: {Category}, Price: {Price}";
+        }
     }
+
+    
 
     public enum Availability
     {
