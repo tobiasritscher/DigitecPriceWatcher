@@ -20,7 +20,7 @@ namespace DigitecPriceWatcher.Pages_WatchItems
 
         public IList<WatchItem> WatchItem { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetViewAsync()
         {
             if (_context.WatchItem != null)
             {

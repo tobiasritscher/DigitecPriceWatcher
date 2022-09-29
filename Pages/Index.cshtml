@@ -7,14 +7,57 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="WatchUrl" class="control-label">Enter an URL:</label>
-                <input asp-for="WatchUrl" class="form-control" />
-                <span asp-validation-for="WatchUrl" class="text-danger"></span>
-            </div> <br>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="WatchUrl" class="control-label">Enter an URL:</label>
+            <input asp-for="WatchUrl" class="form-control" />
+            <span asp-validation-for="WatchUrl" class="text-danger"></span>
+        </div> <br>
+        <div class="form-group">
+            <input type="submit" value="Add Item" class="btn btn-primary" />
+        </div>
+        <br><br><br>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <p>Item</p>
+                </th>
+                <th>
+                    <p></p>
+                </th>
+                <th>
+                    <p>Price</p>
+                </th>
+                <th>
+                    <p>Availability</p>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.WatchItems) {
+                <tr>
+                    <td style="text-align:left; width:20%">
+                        <a href=@item.ItemUrl target="_blank">@Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                    <td style="text-align:left">
+                        <img src= "@Url.Content(item.Category)" alt="Bild" width="120"/>
+                    </td>
+                    <td style="font-weight: bold;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isAvailable)
+                    </td>
+                    <td>
+                        <a asp-page="./WatchItems/Edit" asp-route-id="@item.ID">Edit</a><br>
+                        <a asp-page="./WatchItems/Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

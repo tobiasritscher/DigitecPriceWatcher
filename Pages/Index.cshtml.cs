@@ -19,16 +19,9 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public string WatchUrl { get; set; } = default!;
     
-
-    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid || WatchUrl == null)
@@ -36,10 +29,29 @@ public class IndexModel : PageModel
             return Page();
         }
 
-        watchItem.ItemUrl = WatchUrl;
-        await GetInfosFromUrl();
+        if (WatchUrl.Contains("digitec") || WatchUrl.Contains("galaxus"))
+        {
+            watchItem.ItemUrl = WatchUrl;
+            await GetInfosFromUrl();
+        }
+        else
+        {
+            Console.WriteLine($"Incorrect Input {WatchUrl}");
+        }
+        
 
         return RedirectToPage("./Index");
+    }
+
+    public IList<WatchItem> WatchItems { get;set; } = default!;
+
+    public async Task<IActionResult> OnGetAsync()
+    {
+        var context = SeedData.context;
+
+        WatchItems = await context.WatchItem.ToListAsync();
+        
+        return Page();
     }
 
     private async Task GetInfosFromUrl() {        
