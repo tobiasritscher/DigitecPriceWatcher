@@ -65,7 +65,7 @@ namespace DigitecPriceWatcher.Pages_WatchItems
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./../Index");
         }
 
         private bool WatchItemExists(int id)

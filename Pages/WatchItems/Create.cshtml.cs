@@ -38,7 +38,7 @@ namespace DigitecPriceWatcher.Pages_WatchItems
             _context.WatchItem.Add(WatchItem);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./../Index");
         }
     }
 }

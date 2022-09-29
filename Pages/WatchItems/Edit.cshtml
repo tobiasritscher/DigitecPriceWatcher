@@ -21,7 +21,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="WatchItem.isAvailable" class="control-label"></label>
-                <select asp-for="WatchItem.isAvailable" class="form-control"></select>
+                <select asp-for="WatchItem.isAvailable" class="form-control">
+                    <option value="1">In Stock</option>
+                    <option value="2">Ordered</option>
+                    <option value="3">Out of Stock</option>
+                </select>
                 <span asp-validation-for="WatchItem.isAvailable" class="text-danger"></span>
             </div>
             <div class="form-group">

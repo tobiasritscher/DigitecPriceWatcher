@@ -6,13 +6,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <form method="post">
+    <form method="post" style="margin-bottom: 5em">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom: 2em">
             <label asp-for="WatchUrl" class="control-label">Enter an URL:</label>
             <input asp-for="WatchUrl" class="form-control" />
             <span asp-validation-for="WatchUrl" class="text-danger"></span>
-        </div> <br>
+        </div>
         <div class="form-group">
             <input type="submit" value="Add Item" class="btn btn-primary" />
         </div>
@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th>
-                    <p>Item</p>
+                    <p style="text-align:left">Item</p>
                 </th>
                 <th>
                     <p></p>
@@ -39,7 +39,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model.WatchItems) {
-                <tr>
+                <tr style="vertical-align: middle">
                     <td style="text-align:left; width:20%">
                         <a href=@item.ItemUrl target="_blank">@Html.DisplayFor(modelItem => item.Name)</a>
                     </td>
