@@ -10,3 +10,5 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 5214:5214
+    volumes:
+      - ./db:/db

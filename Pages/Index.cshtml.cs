@@ -24,6 +24,7 @@ public class IndexModel : PageModel
     
     public async Task<IActionResult> OnPostAsync()
     {
+        Console.WriteLine("Showing Homepage");
         if (!ModelState.IsValid || WatchUrl == null)
         {
             return Page();

@@ -14,8 +14,13 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
+    var dataContext = scope.ServiceProvider.GetRequiredService<RazorPagesWatchItemContext>();
+    dataContext.Database.Migrate();
+}
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
     SeedData.Initialize(services);
 }
 
